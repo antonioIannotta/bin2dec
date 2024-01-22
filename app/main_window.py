@@ -43,18 +43,12 @@ class MainWindow(QMainWindow):
         if not self.is_binary_string_valid():
             self.display_result_label.setText("Error!")
             self.display_result_label.setStyleSheet("QLabel { color: red; }")
-            self.insert_number_input.setReadOnly(True)
-            return
         else:
             decimal_number = int(entered_text, 2)
             self.display_result_label.setText(f"{decimal_number}")
+            self.display_result_label.setStyleSheet("QLabel { color: green; }")
 
     def is_binary_string_valid(self):
         binary_string = self.insert_number_input.text()
-        binary_string.replace("0", "")
-        if binary_string == "":
-            return True
-        elif binary_string.replace("1", "") == "":
-            return True
-        else:
-            return False
+        binary_string = binary_string.replace("0", "").replace("1", "")
+        return binary_string == ""
